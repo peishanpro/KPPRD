@@ -1,1 +1,599 @@
-# KPPRD
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>屏北巡禮-瑪家路線 | 一日遊行程</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* 保留原始所有樣式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft JhengHei', sans-serif;
+            background: linear-gradient(135deg, #10b981 0%, #059669 50%, #047857 100%);
+            min-height: 100vh;
+            padding: 20px 10px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: white;
+            border-radius: 20px;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            margin-bottom: 30px;
+        }
+
+        .header .route-number {
+            display: inline-block;
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+        }
+
+        .header h1 {
+            color: #10b981;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #64748b;
+            line-height: 1.6;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .booking-info {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            padding: 12px;
+            border-radius: 10px;
+            color: #166534;
+            font-size: 13px;
+            text-align: left;
+            margin-top: 15px;
+            line-height: 1.6;
+        }
+
+        /* 提醒文字樣式 */
+        .weekend-notice {
+            color: #dc2626;
+            font-weight: bold;
+            font-size: 15px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .tab-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 10px;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+
+        .tab-btn {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            color: #64748b;
+            padding: 12px 8px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            line-height: 1.3;
+        }
+
+        .tab-btn:hover { background: #f1f5f9; }
+
+        .tab-btn.active {
+            background: #10b981;
+            color: white;
+            border-color: #059669;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 50px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 27px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: white;
+            border-radius: 2px;
+            z-index: 1;
+        }
+
+        .itinerary-item {
+            position: relative;
+            margin-bottom: 30px;
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            z-index: 2;
+        }
+
+        .itinerary-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.3);
+        }
+
+        .itinerary-item::before {
+            content: '';
+            position: absolute;
+            left: -31px;
+            top: 25px;
+            width: 14px;
+            height: 14px;
+            background: white;
+            border: 3px solid #10b981;
+            border-radius: 50%;
+            z-index: 3;
+        }
+
+        .itinerary-item.major-station::before {
+            width: 18px;
+            height: 18px;
+            left: -33px;
+            border-width: 4px;
+        }
+
+        .itinerary-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            gap: 10px;
+        }
+
+        .itinerary-name {
+            font-size: 20px;
+            font-weight: bold;
+            color: #1e293b;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex: 1;
+        }
+
+        .itinerary-item.major-station .itinerary-name {
+            font-size: 22px;
+            color: #10b981;
+        }
+
+        .nav-to-station-btn {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+            box-shadow: 0 2px 8px rgba(251, 191, 36, 0.3);
+        }
+
+        .nav-to-station-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(251, 191, 36, 0.4);
+        }
+
+        .itinerary-description {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 2px dashed #e2e8f0;
+            color: #475569;
+            line-height: 1.8;
+            font-size: 14px;
+        }
+
+        .itinerary-note {
+            margin-top: 10px;
+            padding: 8px 12px;
+            background: #fef3c7;
+            border-left: 3px solid #f59e0b;
+            border-radius: 5px;
+            color: #92400e;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        .transport-info {
+            position: relative;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            border-radius: 15px;
+            padding: 15px 20px;
+            margin-left: 50px;
+            box-shadow: 0 4px 15px rgba(251, 191, 36, 0.2);
+            border-left: 4px solid #f59e0b;
+        }
+
+        .transport-info::before {
+            content: '';
+            position: absolute;
+            left: -35px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 10px;
+            height: 10px;
+            background: #fbbf24;
+            border: 3px solid white;
+            border-radius: 50%;
+            z-index: 3;
+        }
+
+        .transport-info .route-badge {
+            display: inline-block;
+            background: #f59e0b;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        .transport-info .time {
+            color: #92400e;
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+
+        .fare-info {
+            font-size: 12px;
+            color: #b45309;
+            margin-top: 5px;
+            padding-top: 5px;
+            border-top: 1px dotted #fbbf24;
+            line-height: 1.4;
+        }
+
+        .transfer-section {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 2px dashed #e2e8f0;
+        }
+
+        .transfer-title {
+            font-size: 13px;
+            font-weight: bold;
+            color: #64748b;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .transfer-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .transfer-btn {
+            background: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            border: 2px solid;
+            margin-right: 15px;
+        }
+
+        .transfer-btn.tra { border-color: #f59e0b; color: #f59e0b; }
+        .transfer-btn.mrt { border-color: #ef4444; color: #ef4444; }
+        .transfer-btn.thsr { border-color: #8b5cf6; color: #8b5cf6; }
+
+        @media (max-width: 480px) {
+            .itinerary-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="route-number">
+                <i class="fas fa-route"></i> 屏北巡禮-瑪家路線
+            </div>
+            <h1>瑪家鄉幸福巴士觀光加值一日遊</h1>
+            <p>探訪屏東原住民族文化，體驗瑪家鄉的自然美景與人文風情。</p>
+            
+            <div class="weekend-notice">
+                <i class="fas fa-exclamation-circle"></i> 本行程僅適用週末，水門夜市僅週六營運
+            </div>
+
+            <div class="booking-info">
+                <strong><i class="fas fa-calendar-check"></i> 預約接駁資訊：</strong><br>
+                預約水門轉運站-舊排灣接駁線幸福巴士方式：透過屏東縣幸福巴士預約平台 <a href="https://reurl.cc/qKM6Gy" target="_blank" style="color: #10b981; font-weight: bold;">https://reurl.cc/qKM6Gy</a> 或是撥打 <strong>0975-398025</strong> 預約。(請於搭乘前三日 17:00 前預約)
+            </div>
+            
+            <div class="tab-container">
+                <button class="tab-btn active" onclick="switchRoute('kh_to_kh', this)">高雄出發<br>結束回高雄</button>
+                <button class="tab-btn" onclick="switchRoute('kh_to_pt', this)">高雄出發<br>結束往屏東</button>
+                <button class="tab-btn" onclick="switchRoute('kh_to_night', this)">高雄出發結束逛<br>水門夜市再往屏東</button>
+                <button class="tab-btn" onclick="switchRoute('pt_to_pt', this)">屏東出發<br>結束回屏東</button>
+            </div>
+        </div>
+
+        <div class="timeline" id="timeline"></div>
+    </div>
+
+    <script>
+        // 定義共用的原住民族文化園區資訊
+        const indigenousParkInfo = {
+            name: "原住民族文化園區",
+            description: "完整呈現16原住民族聚落風貌，設有歌舞場、360度環形劇場。園區內石板屋、竹屋錯落於綠林中，處處表露著原住民的傳統軌跡。",
+            note: "<b>票價：</b>全票150元<br><b>門票包含：</b>歌舞節目(需索票)、文化體驗、園區導覽(需預約)<br><b>14:30歌舞節目：</b>需於14:20前索票、14:30前入場",
+            nextTransport: [{ 
+                route: "603B", from: "原住民族文化園區", to: "水門轉運站", depart: "16:10", arrive: "16:20",
+                fare: "全票23元", payment: "電子票證、投現（不找零）、TPASS南高屏999版、屏東299/399版"
+            }]
+        };
+
+        const originalItinerary = [
+            {
+                name: "臺鐵新左營站",
+                major: true, tra: true, mrt: true, thsr: true,
+                description: "北高雄三鐵共構車站，包含臺鐵、高鐵及捷運。",
+                note: "註：公車站位於臺鐵左營站側、高雄捷運左營站2號出口外",
+                nextTransport: [{ 
+                    route: "511A", from: "新左營車站", to: "水門轉運站", depart: "08:30", arrive: "09:15",
+                    fare: "全票150元", payment: "電子票證、投現（不找零）、TPASS南高屏999版"
+                }]
+            },
+            {
+                name: "水門轉運站",
+                major: true,
+                description: "在地特色產品展售及不定時手作體驗活動",
+                nextTransport: [{ 
+                    route: "幸福巴士水門轉運站-舊排灣接駁線", from: "水門轉運站", to: "望夫崖涼亭", depart: "09:40", arrive: "10:25",
+                    fare: "全票32元", payment: "現金"
+                }]
+            },
+            {
+                name: "望夫崖涼亭",
+                description: "涼亭微風徐徐，望著綿延山景，享受悠閒時光。可沿著屏專五線步行至附近舊瑪家國小。",
+                nextTransport: [{ 
+                    route: "幸福巴士水門轉運站-舊排灣接駁線", from: "望夫崖涼亭", to: "原住民族文化園區", depart: "11:40", arrive: "12:10",
+                    fare: "全票25元", payment: "現金"
+                }]
+            },
+            indigenousParkInfo,
+            {
+                name: "水門轉運站",
+                major: true,
+                description: "在地特色產品展售 (如小米、酒釀)及不定時手作體驗活動",
+                nextTransport: [{ 
+                    route: "511A", from: "水門轉運站", to: "台鐵新左營站", depart: "17:00", arrive: "17:45",
+                    fare: "全票150元", payment: "電子票證、投現（不找零）、TPASS南高屏999版"
+                }]
+            },
+            {
+                name: "臺鐵新左營站",
+                major: true, tra: true, mrt: true, thsr: true,
+                description: "回程抵達高雄市聯外交通核心",
+                note: "註：公車站位於臺鐵左營站側"
+            }
+        ];
+
+        const allRoutes = {
+            'kh_to_kh': [...originalItinerary],
+            'kh_to_pt': [
+                originalItinerary[0], originalItinerary[1], originalItinerary[2], originalItinerary[3],
+                {
+                    name: "水門轉運站",
+                    major: true,
+                    description: "在地特色產品展售 (如小米、酒釀)及不定時手作體驗活動",
+                    nextTransport: [{ 
+                        route: "8232", from: "水門轉運站", to: "屏東轉運站", depart: "17:01", arrive: "17:59",
+                        fare: "全票84元", payment: "電子票證、投現（不找零）、TPASS南高屏999版、屏東299/399版"
+                    }]
+                },
+                { 
+                    name: "臺鐵屏東站", 
+                    major: true, 
+                    tra: true, 
+                    description: "回程抵達屏東市聯外交通核心，若需尋找住宿可於屏東縣政府交旅處網頁(https://reurl.cc/mkeAr7)查詢合法旅館" 
+                }
+            ],
+            'kh_to_night': [
+                originalItinerary[0], originalItinerary[1], originalItinerary[2],
+                {
+                    name: "原住民族文化園區",
+                    description: indigenousParkInfo.description,
+                    note: indigenousParkInfo.note,
+                    nextTransport: [{ 
+                        route: "603B", from: "原住民族文化園區", to: "水門夜市", depart: "16:10", arrive: "16:05",
+                        fare: "全票23元", payment: "電子票證、投現（不找零）、TPASS南高屏999版、屏東299/399版"
+                    }]
+                },
+                {
+                    name: "水門夜市",
+                    description: "【週六限定】品嚐在地小吃。",
+                    nextTransport: [
+                        { 
+                            route: "8228", from: "內埔農工站", to: "屏東轉運站", depart: "18:42", arrive: "19:26", 
+                            walkLink: "https://maps.app.goo.gl/BdgTCHTx1cTuyV9NA",
+                            fare: "全票66元", payment: "電子票證、投現（不找零）、TPASS南高屏999版、屏東299/399版"
+                        },
+                        { 
+                            route: "8231", from: "內埔農工站", to: "屏東轉運站", depart: "19:51", arrive: "20:41", 
+                            walkLink: "https://maps.app.goo.gl/BdgTCHTx1cTuyV9NA",
+                            fare: "全票83元", payment: "電子票證、投現（不找零）、TPASS南高屏999版、屏東299/399版"
+                        }
+                    ]
+                },
+                { 
+                    name: "屏東轉運站", 
+                    major: true, 
+                    tra: true, 
+                    description: "抵達屏東市中心，若需尋找住宿可於屏東縣政府交旅處網頁(https://reurl.cc/mkeAr7)查詢合法旅館" 
+                }
+            ],
+            'pt_to_pt': [
+                {
+                    name: "屏東轉運站",
+                    major: true, tra: true,
+                    description: "屏東市區交通樞紐。",
+                    note: "註：公車站位於屏東轉運站內",
+                    nextTransport: [{ route: "8231", from: "屏東轉運站", to: "水門轉運站", depart: "08:21", arrive: "09:15" }]
+                },
+                originalItinerary[1], originalItinerary[2], originalItinerary[3],
+                {
+                    name: "水門轉運站",
+                    major: true,
+                    description: "在地特色產品展售 (如小米、酒釀)及不定時手作體驗活動",
+                    nextTransport: [{ 
+                        route: "8232", from: "水門轉運站", to: "屏東轉運站", depart: "17:01", arrive: "17:59",
+                        fare: "全票84元", payment: "電子票證、投現（不找零）、TPASS南高屏999版、屏東299/399版"
+                    }]
+                },
+                { 
+                    name: "臺鐵屏東站", 
+                    major: true, 
+                    tra: true, 
+                    description: "回程抵達屏東市聯外交通核心，若需尋找住宿可於屏東縣政府交旅處網頁(https://reurl.cc/mkeAr7)查詢合法旅館" 
+                }
+            ]
+        };
+
+        function switchRoute(routeType, btnElement) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            btnElement.classList.add('active');
+            renderTimeline(allRoutes[routeType]);
+        }
+
+        function renderTimeline(itineraryData) {
+            const timeline = document.getElementById('timeline');
+            timeline.innerHTML = '';
+            
+            itineraryData.forEach((item) => {
+                const div = document.createElement('div');
+                div.className = 'itinerary-item' + (item.major ? ' major-station' : '');
+                
+                const header = document.createElement('div');
+                header.className = 'itinerary-header';
+                header.innerHTML = `<div class="itinerary-name"><i class="fas fa-map-marker-alt"></i> ${item.name}</div>
+                                   <button class="nav-to-station-btn" onclick="openNav('${item.name}')"><i class="fas fa-walking"></i> 步行到${item.name}</button>`;
+                div.appendChild(header);
+                
+                if (item.description) {
+                    const desc = document.createElement('div');
+                    desc.className = 'itinerary-description';
+                    desc.textContent = item.description;
+                    div.appendChild(desc);
+                }
+
+                if (item.note) {
+                    const note = document.createElement('div');
+                    note.className = 'itinerary-note';
+                    // 改用 innerHTML 以支援分行顯示
+                    note.innerHTML = item.note;
+                    div.appendChild(note);
+                }
+
+                if (item.tra || item.mrt || item.thsr) {
+                    const trans = document.createElement('div');
+                    trans.className = 'transfer-section';
+                    let html = `<div class="transfer-title"><i class="fas fa-exchange-alt"></i> 轉乘資訊</div><div class="transfer-buttons">`;
+                    if (item.tra) html += `<a href="https://www.railway.gov.tw/" target="_blank" class="transfer-btn tra"><i class="fas fa-train-subway"></i> 轉乘臺鐵</a>`;
+                    if (item.mrt) html += `<a href="https://www.krtc.com.tw/" target="_blank" class="transfer-btn mrt"><i class="fas fa-train"></i> 轉乘捷運</a>`;
+                    if (item.thsr) html += `<a href="https://www.thsrc.com.tw/" target="_blank" class="transfer-btn thsr"><i class="fas fa-train-tram"></i> 轉乘高鐵</a>`;
+                    trans.innerHTML = html + '</div>';
+                    div.appendChild(trans);
+                }
+                
+                timeline.appendChild(div);
+                
+                if (item.nextTransport) {
+                    item.nextTransport.forEach(t => {
+                        const ti = document.createElement('div');
+                        ti.className = 'transport-info';
+                        
+                        const transportContainer = document.createElement('div');
+                        transportContainer.style.display = 'flex';
+                        transportContainer.style.justifyContent = 'space-between';
+                        transportContainer.style.alignItems = 'flex-start';
+                        transportContainer.style.gap = '10px';
+                        
+                        const fareHtml = t.fare ? `<div class="fare-info"><i class="fas fa-ticket-alt"></i> 票價：${t.fare}<br><i class="fas fa-coins"></i> 收費方式：${t.payment}</div>` : '';
+
+                        const textDiv = document.createElement('div');
+                        textDiv.innerHTML = `<div><span class="route-badge">${t.route}</span></div>
+                                            <div class="time">${t.from} ${t.depart || ''} → ${t.to} ${t.arrive || ''}</div>
+                                            ${fareHtml}`;
+                        transportContainer.appendChild(textDiv);
+
+                        if (t.walkLink) {
+                            const walkBtn = document.createElement('button');
+                            walkBtn.className = 'nav-to-station-btn';
+                            walkBtn.style.background = 'linear-gradient(135deg, #10b981, #059669)'; 
+                            walkBtn.innerHTML = `<i class="fas fa-walking"></i> 步行到${t.from}`;
+                            walkBtn.onclick = () => window.open(t.walkLink, '_blank');
+                            transportContainer.appendChild(walkBtn);
+                        }
+                        
+                        ti.appendChild(transportContainer);
+                        timeline.appendChild(ti);
+                    });
+                }
+            });
+        }
+
+        function openNav(name) {
+            let destination = name === "臺鐵新左營站" ? "臺鐵新左營站公車站" : name;
+            window.open(`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(destination + ' 屏東')}&travelmode=walking`, '_blank');
+        }
+
+        renderTimeline(allRoutes['kh_to_kh']);
+    </script>
+</body>
+</html>
