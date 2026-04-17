@@ -2,7 +2,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>屏北巡禮-瑪家路線 | 一日遊行程</title>
+    <title>屏北巡禮-瑪上幸福 | 一日遊行程</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* 保留原始所有樣式 */
@@ -340,9 +340,9 @@
     <div class="container">
         <div class="header">
             <div class="route-number">
-                <i class="fas fa-route"></i> 屏北巡禮-瑪家路線
+                <i class="fas fa-route"></i> 屏北巡禮-瑪上幸福
             </div>
-            <h1>瑪家鄉幸福巴士觀光加值一日遊</h1>
+            <h1>屏北瑪家幸福巴士一日觀光體驗</h1>
             <p>探訪屏東原住民族文化，體驗瑪家鄉的自然美景與人文風情。</p>
             
             <div class="weekend-notice">
