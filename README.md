@@ -343,15 +343,15 @@
                 <i class="fas fa-route"></i> 屏北巡禮-瑪上幸福
             </div>
             <h1>屏北瑪家幸福巴士一日觀光體驗</h1>
-            <p>探訪屏東原住民族文化，體驗瑪家鄉的自然美景與人文風情。</p>
+            <p>搭上「幸福巴士」，探訪屏東原住民族文化，體驗瑪家鄉的自然美景與人文風情。</p>
             
             <div class="weekend-notice">
-                <i class="fas fa-exclamation-circle"></i> 本行程僅適用週末，水門夜市僅週六營運
+                <i class="fas fa-exclamation-circle"></i> 本體驗行程為週六限定
             </div>
 
             <div class="booking-info">
                 <strong><i class="fas fa-calendar-check"></i> 預約接駁資訊：</strong><br>
-                預約水門轉運站-舊排灣接駁線幸福巴士方式：透過屏東縣幸福巴士預約平台 <a href="https://reurl.cc/qKM6Gy" target="_blank" style="color: #10b981; font-weight: bold;">https://reurl.cc/qKM6Gy</a> 或是撥打 <strong>0975-398025</strong> 預約。(請於搭乘前三日 17:00 前預約)
+                預約幸福瑪家5路（水門轉運站-舊排灣接駁線）：透過屏東縣幸福巴士預約平台 <a href="https://reurl.cc/qKM6Gy" target="_blank" style="color: #10b981; font-weight: bold;">https://reurl.cc/qKM6Gy</a> 或是撥打 <strong>0975-398025</strong> 預約。(請於搭乘前三日 17:00 前預約)
             </div>
             
             <div class="tab-container">
@@ -372,7 +372,7 @@
             description: "完整呈現16原住民族聚落風貌，設有歌舞場、360度環形劇場。園區內石板屋、竹屋錯落於綠林中，處處表露著原住民的傳統軌跡。",
             note: "<b>票價：</b>全票150元<br><b>門票包含：</b>歌舞節目(需索票)、文化體驗、園區導覽(需預約)<br><b>14:30歌舞節目：</b>需於14:20前索票、14:30前入場",
             nextTransport: [{ 
-                route: "603B", from: "原住民族文化園區", to: "水門轉運站", depart: "16:10", arrive: "16:20",
+                route: "603B", from: "原住民文化園區", to: "水門轉運站", depart: "16:10", arrive: "16:25",
                 fare: "全票23元", payment: "電子票證、投現（不找零）、TPASS南高屏999版、屏東299/399版"
             }]
         };
@@ -393,7 +393,7 @@
                 major: true,
                 description: "在地特色產品展售及不定時手作體驗活動",
                 nextTransport: [{ 
-                    route: "幸福巴士水門轉運站-舊排灣接駁線", from: "水門轉運站", to: "望夫崖涼亭", depart: "09:40", arrive: "10:25",
+                    route: "幸福瑪家5路（水門轉運站-舊排灣接駁線）", from: "水門轉運站", to: "望夫崖涼亭", depart: "09:40", arrive: "10:20",
                     fare: "全票32元", payment: "現金"
                 }]
             },
@@ -401,7 +401,7 @@
                 name: "望夫崖涼亭",
                 description: "涼亭微風徐徐，望著綿延山景，享受悠閒時光。可沿著屏專五線步行至附近舊瑪家國小。",
                 nextTransport: [{ 
-                    route: "幸福巴士水門轉運站-舊排灣接駁線", from: "望夫崖涼亭", to: "原住民族文化園區", depart: "11:40", arrive: "12:10",
+                    route: "幸福瑪家5路（水門轉運站-舊排灣接駁線）", from: "望夫崖涼亭", to: "原住民文化園區", depart: "11:40", arrive: "12:10",
                     fare: "全票25元", payment: "現金"
                 }]
             },
@@ -411,7 +411,7 @@
                 major: true,
                 description: "在地特色產品展售 (如小米、酒釀)及不定時手作體驗活動",
                 nextTransport: [{ 
-                    route: "511A", from: "水門轉運站", to: "台鐵新左營站", depart: "17:00", arrive: "17:45",
+                    route: "511A", from: "水門轉運站", to: "台鐵新左營站", depart: "17:10", arrive: "17:55",
                     fare: "全票150元", payment: "電子票證、投現（不找零）、TPASS南高屏999版"
                 }]
             },
@@ -450,7 +450,7 @@
                     description: indigenousParkInfo.description,
                     note: indigenousParkInfo.note,
                     nextTransport: [{ 
-                        route: "603B", from: "原住民族文化園區", to: "水門夜市", depart: "16:10", arrive: "16:05",
+                        route: "603B", from: "原住民文化園區", to: "水門夜市", depart: "16:10", arrive: "16:20",
                         fare: "全票23元", payment: "電子票證、投現（不找零）、TPASS南高屏999版、屏東299/399版"
                     }]
                 },
@@ -464,7 +464,7 @@
                             fare: "全票66元", payment: "電子票證、投現（不找零）、TPASS南高屏999版、屏東299/399版"
                         },
                         { 
-                            route: "8231", from: "內埔農工站", to: "屏東轉運站", depart: "19:51", arrive: "20:41", 
+                            route: "8231", from: "內農食品科", to: "屏東轉運站", depart: "19:51", arrive: "20:41", 
                             walkLink: "https://maps.app.goo.gl/BdgTCHTx1cTuyV9NA",
                             fare: "全票83元", payment: "電子票證、投現（不找零）、TPASS南高屏999版、屏東299/399版"
                         }
