@@ -411,7 +411,7 @@
                 major: true,
                 description: "在地特色產品展售 (如小米、酒釀)及不定時手作體驗活動",
                 nextTransport: [{ 
-                    route: "511A", from: "水門轉運站", to: "台鐵新左營站", depart: "17:10", arrive: "17:55",
+                    route: "511A", from: "水門轉運站", to: "台鐵新左營站", depart: "17:10", arrive: "18:10",
                     fare: "全票150元", payment: "電子票證、投現（不找零）、TPASS南高屏999版"
                 }]
             },
